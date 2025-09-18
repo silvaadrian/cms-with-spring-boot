@@ -1,0 +1,194 @@
+.form-container {
+    border: solid 2px;
+    border-radius: 10px;
+    color: black;
+    padding: 50px;
+    margin-top: 150px;
+    margin-left: 150px;
+    margin-bottom: 100px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.form-container h1 {
+    font-size: 2em;
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+
+button {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #00d097;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #00d097;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+button:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #00d097;
+    z-index: -1;
+}
+
+button:hover,
+button:focus {
+    color: white;
+}
+
+button:hover:before,
+button:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+.form-container-lista-usuario {
+    border: solid 2px;
+    border-radius: 10px;
+    color: black;
+    padding: 50px;
+    margin-top: 10px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.form-container-lista-usuario h1 {
+    font-size: 2em;
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+
+.perfil {
+    display: none;
+    color: black;
+    font-size: 2em;
+    padding: 20px;
+    border: solid 1px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    margin-left: 200px;
+    padding: 50px;
+    width: 500px;
+}
+
+.perfil h1 {
+    text-align: center;
+}
+
+.perfil div {
+    font-size: 1.5rem;
+    padding: 5px;
+}
+
+.perfil label {
+    text-align: left;
+    font-size: 15px;
+}
+
+.perfil input {
+    outline: none;
+    padding: 0px 7px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4);
+    font-size: 15px;
+}
+
+.perfil input:focus {
+    border: 2px solid transparent;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4),
+        inset 3px 3px 10px rgba(0, 0, 0, 1),
+        inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+.perfil a {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #00d097;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+    margin-top: 10px;
+    margin-left: 125px;
+}
+
+.perfil a:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #00d097;
+    z-index: -1;
+    text-align: center;
+}
+
+.perfil a:hover,
+a:focus {
+    color: white;
+}
+
+.perfil a:hover:before,
+a:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+.perfil a:active {
+    transform: scale(0.9);
+}
+
+.dropdown a {
+    color: white;
+    font-size: 17px;
+}
+
+.dropdown-menu a {
+    color: black;
+}
+
+.sair {
+    color: black;
+}

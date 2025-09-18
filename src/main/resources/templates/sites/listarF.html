@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Sites</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/perfil_usuario/style.css">
+    <link rel="stylesheet" href="/css/perfil_usuario/style_list.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/usuario/perfil">
+                <img src="/image/cms.png" width="50" height="50" alt="Logo"></a>
+        </div>
+        <div class="user">
+            <span th:if="${userName != null}" th:text="'Bem-vindo, ' + ${userName}"></span>
+            <span th:if="${userName == null}"></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li class="list">
+                    <a href="/usuario/perfil">
+                        <span class="icon">
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Voltar</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="/homeindex/logout">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" id="formulario">
+            <h1 id="tituloLista">
+                Lista de sites
+            </h1>
+            <br>
+            <div>
+                <button id="btnNovo" type="button" onclick="window.location.href='/sites/cadastroF'">
+                    <ion-icon name="add-outline"></ion-icon>
+                    Novo
+                </button>
+
+                <br>
+                <br>
+                <br id="tabela-registros">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Id</th>
+                            <th scope="col" class="text-center">Nome</th>
+                            <th scope="col" class="text-center">Url</th>
+                            <th scope="col" class="text-center">Usuário</th>
+                            <th scope="col" class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" th:each="item:${lista}">
+                            <th scope="row" th:text="${item.id}"></th>
+                            <td th:text="${item.nome}"></td>
+                            <td th:text="${item.url}"></td>
+                            <td th:text="${item.usuarios.email}"></td>
+                            <td>
+                                <a class="btn btn-warning mt-2" th:href="@{/sites/alterarF(id=${item.id})}">
+                                    <ion-icon name="create-outline"></ion-icon>Alterar
+                                </a>
+                                <a class="btn btn-danger excluir mt-2" data-target="#myModal" type="button"
+                                    th:id="${item.id}" data-value="/sites/excluir?id={id}" data-toggle="modal">
+                                    <ion-icon name="trash-outline"></ion-icon>Excluir
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="modal fade" tabindex="-1" role="dialog" id="myModal" th:fragment="modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center justify-content-center">
+                                <h4 class="modal-title">Atenção</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Confirma a exclusão?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</a>
+                                <a id="ok_confirm" type="button" class="btn btn-danger">Sim</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            var url = "";
+            $(".excluir").on("click", function () {
+                // no clique do botão excluir, guardar a url para ser chamada na confirmação da janela modal
+                url = $(this).attr("data-value");
+                url = url.replace("{id}", $(this).attr("id"));
+            });
+
+            $("#ok_confirm").click(function () {
+                // botão de confirmação da janela modal, chamará a controller
+                document.location.href = "http://localhost:8080" + url;
+            });
+        });
+
+    </script>
+
+    <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+
+    <script>
+        console.log("Username: " + "[[${ userName }]]");
+        console.log("Role: " + "[[${ role }]]");
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var retorno = "[[${ retorno }]]";
+            var mensagem = "[[${mensagem}]]";
+            if (retorno) {
+                alert(mensagem);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

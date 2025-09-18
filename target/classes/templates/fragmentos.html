@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <div th:fragment="topo">
+    <nav class="navbar navbar-expand-lg navbar-header" style="background-color: #21d192">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img src="/image/cms.png" width="50" height="50" class="d-inline-block align-top" />
+          </a>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav form-inline">
+            <li class="nav-item" th:if="${userName == null}">
+              <a class="nav-link" href="/homeindex/login">Entrar</a>
+            </li>
+            <li class="nav-item dropdown" th:if="${userName != null}">
+              <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span th:text="'Olá, ' + ${userName}"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="/usuario/perfil">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <span>Meu Perfil</span>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item" th:if="${userName == null}">
+              <a class="nav-link" href="#">
+                <img src="/image/iconLogin.png" width="50" height="50" class="d-inline-block align-top" />
+              </a>
+            </li>
+            <li class="nav-item" th:if="${userName != null}">
+              <a class="nav-link sair" href="/homeindex/logout">
+                <ion-icon name="log-in-outline"></ion-icon>
+                Sair
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div th:fragment="rodape">
+    <div class="">
+      <footer class="text-center text-lg-start text-dark" style="background-color: #eceff1">
+        <section class="d-flex justify-content-between p-4 text-white" style="background-color: #21d192">
+          <div class="me-5">
+            <span>Fale conosco:</span>
+          </div>
+        </section>
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <h6 class="text-uppercase fw-bold">Contato</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #7c4dff; height: 2px" />
+                <p>
+                  <ion-icon name="business-outline"></ion-icon> R. Alvino Gomes Teixeira,
+                  340, SP
+                </p>
+                <p>
+                  <ion-icon name="mail-outline"></ion-icon> adriansilva@toledoprudente.edu.br
+                </p>
+                <p><ion-icon name="call-outline"></ion-icon> (18) 988888515</p>
+                <p><ion-icon name="call-outline"></ion-icon> (18) 999454545</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+          © 2023 Copyright:
+          <a class="text-dark" href="">Adrian Ricardo da Silva</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>

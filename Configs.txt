@@ -1,0 +1,2 @@
+SenhabancoCasa = root
+SenhabancoTrampo = Teste@123

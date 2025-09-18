@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<!-- Meta tags Obrigatórias -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Página Inicial</title>
+
+	<link rel="icon" type="image/png" href="/image/cms.png" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/perfil_usuario/style_list.css">
+</head>
+
+<body>
+	<header th:include="fragmentos::topo">
+	</header>
+	<main class="mb-3">
+		<div class="jumbotron text-center">
+			<h1 class="display-4">Bem-vindo ao nosso site de CMS!</h1>
+			<p class="lead">Aqui você pode encontrar o que precisa.</p>
+			<hr class="my-4">
+			<p>Navegue pelo nosso site e fique por dentro das nossas últimas novidades.</p>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Recursos</h2>
+					<p>Aqui estão alguns dos recursos oferecidos pelo Meu CMS:</p>
+					<ul>
+						<li>Criação e edição de páginas</li>
+						<li>E muito mais!</li>
+					</ul>
+					<p th:if="${userName == null}">
+						<a class="btn btn-secondary" href="/usuario/cadastro" role="button">Crie sua conta</a>
+					</p>
+					<p th:unless="${userName == null}">
+						<a class="btn btn-secondary" href="/sites/cadastro" role="button">Criar Site</a>
+					</p>
+
+				</div>
+				<div class="col-md-8">
+					<h2>Últimas notícias</h2>
+					<div class="card-deck">
+						<div class="card">
+							<img class="card-img-top" src="/image/segurancaBanner.jpg" alt="Imagem de capa do card">
+							<div class="card-body">
+								<h5 class="card-title">Atualização de segurança</h5>
+								<p class="card-text">Uma atualização de segurança foi lançada para o Meu CMS.
+								</p>
+								<p class="card-text"><small class="text-muted">Publicado em 28/04/2023</small></p>
+							</div>
+						</div>
+						<div class="card">
+							<img class="card-img-top" src="/image/lancamento.jpg" alt="Imagem de capa do card">
+							<div class="card-body">
+								<h5 class="card-title">Lançamento CMS</h5>
+								<p class="card-text">Estamos felizes em anunciar o lançamento oficial do Meu CMS. Crie e
+									gerencie
+									seu próprio site com facilidade.</p>
+								<p class="card-text"><small class="text-muted">Publicado em 25/04/2023</small></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+	<footer th:include="fragmentos::rodape"></footer>
+
+	<!-- JavaScript (Opcional) -->
+	<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+	<!-- Restante do código HTML -->
+
+	<script>
+		function handleLogin() {
+			var userName = "Nome do usuário"; // Substitua pela variável que contém o nome do usuário logado
+			console.log("Usuário logado: " + userName);
+		}
+	</script>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
+
+
+</body>
+
+</html>

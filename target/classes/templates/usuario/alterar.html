@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/perfil_usuario/style.css">
+    <link rel="stylesheet" href="/css/perfil_usuario/style_list.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/usuario/perfil">
+                <img src="/image/cms.png" width="50" height="50" alt="Logo"></a>
+        </div>
+        <div class="user">
+            <span th:if="${userName != null}" th:text="'Bem-vindo, ' + ${userName}"></span>
+            <span th:if="${userName == null}"></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li class="list">
+                    <a href="#" onclick="voltarPagina()">
+                        <span class="icon">
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Voltar</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="/homeindex/logout">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <form id="formulario-alterar" class="form-container-lista-usuario" th:object="${objusuario}"
+                th:action="@{/usuario/salvarU}" method="post">
+                <h1>
+                    Alterar Informações do usuário
+                </h1>
+                <hr>
+                <div class="">
+                    <label for="id">Id:</label>
+                    <input type="text" class="form-control" id="id" name="id" th:field="*{id}" readonly>
+                </div>
+                <div class="">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" required>
+                </div>
+                <div class="">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email" name="email" th:field="*{email}" required>
+                </div>
+                <div class="">
+                    <label>Data de Nascimento:</label>
+                    <input type="datetime" class="form-control" th:field="*{data_nascimento}" id="data_nascimento" />
+                </div>
+                <div class="">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" th:field="*{cpf}" id="cpf" minlength="11" maxlength="11">
+                </div>
+                <div class="">
+                    <label for="senha">Senha:</label>
+                    <input type="password" th:field="*{senha}" class="form-control" id="senha_usuario" minlength="8"
+                        autocomplete="new-password">
+                </div>
+                <div class="" th:if="${role == 'ADM'}">
+                    <label for="admin">Administrador?:</label>
+                    <input type="radio" id="admin-sim" th:field="*{admin}" name="admin" th:value="true">
+                    <label for="admin-sim">Sim</label>
+                    <input type="radio" id="admin-nao" th:field="*{admin}" name="admin" th:value="false">
+                    <label for="admin-nao">Não</label>
+                </div>
+
+                <div th:if="${retorno != null}" class="row justify-content-center" id="retorno" style="display: none;">
+                    <div th:each="retorno : ${retorno}" class="alert alert-danger" th:text="${mensagem}">
+                    </div>
+                </div>
+                <br>
+                <div class="text-center">
+                    <button type="submit">ALTERAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+
+    <script>
+        const form = document.querySelector('#formulario-alterar');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const nomeInput = document.querySelector('#nome');
+            const emailInput = document.querySelector('#email');
+            const dataNascimentoInput = document.querySelector('#data_nascimento');
+            const cpfInput = document.querySelector('#cpf');
+            const senhaInput = document.querySelector('#senha_usuario');
+
+            if (!nomeInput.value || nomeInput.value.trim() === "") {
+                alert('Por favor, insira seu nome.');
+                return;
+            }
+
+            if (!emailInput.value || emailInput.value.trim() === "") {
+                alert('Por favor, insira seu endereço de e-mail.');
+                return;
+            }
+
+            if (!dataNascimentoInput.value || dataNascimentoInput.value.trim() === "") {
+                alert('Por favor, insira sua data de nascimento.');
+                return;
+            }
+
+            if (!cpfInput.value || cpfInput.value.trim() === "") {
+                alert('Por favor, insira seu CPF.');
+                return;
+            }
+
+            if (!senhaInput.value || senhaInput.value.trim() === "") {
+                alert('Por favor, insira uma senha.');
+                return;
+            }
+
+            var cpf = cpfInput.value.replace(/[^\d]+/g, '');
+
+            form.submit();
+        });
+
+    </script>
+</body>
+
+</html>

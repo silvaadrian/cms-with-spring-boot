@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 50vh;
+    background: #fff;
+}
+
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #5a6268;
+    width: 70px;
+    box-shadow: 10px 0 0 #00d097;
+    border-left: 10px solid #5a6268;
+    overflow-x: hidden;
+    transition: 0.5s;
+    overflow-y: hidden;
+}
+
+.navigation:hover {
+    width: 250px;
+}
+
+.navigation ul {
+    padding-top: 125px;
+}
+
+.navigation ul li {
+    list-style: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.navigation ul li a {
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navigation ul li a .icon {
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 70px;
+}
+
+.navigation ul li a .icon ion-icon {
+    font-size: 1.5rem;
+    z-index: 1;
+}
+
+.navigation ul li a .title {
+    display: block;
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+}
+
+.navigation ul li.active {
+    background: #00d097;
+}
+
+.navigation ul li.active a::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #5a6268;
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 #00d097;
+}
+
+.navigation ul li.active a::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #5a6268;
+    border-radius: 50%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    align-items: center;
+    /* Largura do menu lateral */
+    padding: 100px;
+    color: black;
+    flex: 1;
+    position: absolute;
+    justify-content: center;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #00d097;
+    color: #fff;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+}
+
+.content div {
+    font-size: 1.5rem;
+    padding: 5px;
+}
+
+.content label {
+    text-align: left;
+    font-size: 15px;
+}
+
+.content h1 {
+    text-align: center;
+}
